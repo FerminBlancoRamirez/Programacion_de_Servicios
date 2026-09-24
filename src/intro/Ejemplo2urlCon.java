@@ -7,7 +7,7 @@ import java.io.*;
 public class Ejemplo2urlCon {
     public static void main(String[] args) {
         try {
-            //Instanciamos la clase URL y añadimos un url
+            //Instanciamos la clase URL y añadimos un url referenciando el archivo .php previamente creado
             URL url = new URL("http://localhost/vernombre.php");
             URLConnection conexion = url.openConnection();
             //Habilitamos la entrega de datos a la url previamente seleccionada
@@ -36,7 +36,7 @@ public class Ejemplo2urlCon {
                 System.out.println(linea);
             }
             reader.close(); // cerrar flujo
-
+            sc.close();
         } catch (MalformedURLException me) {
             System.err.println("MalformedURLException: " + me);
         } catch (IOException ioe) {
