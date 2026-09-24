@@ -1,0 +1,12 @@
+En este codigo tenemos 5 instancias de URL, visualizamos cada una con el metodo Visualizar()
+el cual dependiendo del tipo de URL le introduzcamos nos devolvera la destripacion de la URL
+con los metodos que utiliza:
+    Con toString() visualizaremos la URL completa, con .getProtocol visualizaremos el protocolo
+    de seguridad que usaremos, con .getHost() visualizamos el nombre completo de la maquina,
+    con getPort() visualizamos el puerto que tiene introducido la URL si no tiene niguno devolverá 
+    -1, con .getFile() visualizamos la ruta hasta el final del archivo desde el servidor si no aparece 
+    veremos /, con .getUserInfo() visualizaremos los datos del usuario de la direccion URL si no existe
+    aparece como null, con .getPath() visualizamos lo mismo que con getFile(), con getAuthority() visualizamos
+    la autoridad del objet, es el host con el puerto y con .getQuery() vemos la cadena que se envia a la pagina
+    para ser para ser procesada.
+Cada URL de las instancias vienen puestas de una manera diferente para ver la diferencia de protocolos. 

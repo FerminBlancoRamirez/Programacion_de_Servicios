@@ -1,0 +1,12 @@
+Con el metodo estatico pruebaMetodos al que le introducimos 
+un parametro InetAddres, este mismo metodo devuelve direcciones IP
+de la maquina que esta ejecutando este codigo con .getLocalHost().
+En el main en primer lugar le damos el valor al parametro InetAddres
+de dir devolviendo un objeto que representa la direccion IP de la maquina
+que funciona como host luego con ese objeto usamos el metodo pruebaMetodos y
+obtenemos toda la informacion ip con los metodos getLocalHost() el cual
+que representa la direccion ip de la maquina en la que se ejecuta, el nombre del host del objeto
+con el metodo getHostName(), el nombre canonico completo del objeto con .getCanonicalHostName() y
+y con .getAllByName obtenemos un array de objetos con el que averiguamos todas las direcciones IP
+que tenga asignada la maquina en particular.
+
