@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 
 
@@ -40,7 +41,14 @@ public class servidor1 {
             OutputStream salida=cliente1.getOutputStream();
             DataOutputStream flujoSalida=new DataOutputStream(salida);
 
-            flujoSalida.writeUTF("Saludos al cliente desde el servidor");
+            //envio Info
+            Scanner sc =new Scanner(System.in);
+            System.out.println("Escribe una cadena para mandar al cliente");
+            String cad= sc.nextLine();
+
+            flujoSalida.writeUTF(cad);
+            sc.close();
+
 
             
             // Cierre explícito de sockets de los clientes

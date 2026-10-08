@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Cliente1 {
     public static void main(String[] args) {
@@ -20,7 +21,12 @@ public class Cliente1 {
             InetAddress inetAddress = cliente.getInetAddress();
 
             DataOutputStream flujoSalida=new DataOutputStream(cliente.getOutputStream());
-            flujoSalida.writeUTF("Saludos al servidor desde el cliente");
+            //envio Info
+            Scanner sc =new Scanner(System.in);
+            System.out.println("Escribe una cadena para mandar al cliente");
+            String cad= sc.nextLine();
+            flujoSalida.writeUTF(cad);
+            sc.close();
 
             DataInputStream flujoEntrada=new DataInputStream(cliente.getInputStream());
             System.out.println("Recibiendo un mensaje del servidor "+ flujoEntrada.readUTF());
