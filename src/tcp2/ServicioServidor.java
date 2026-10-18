@@ -1,5 +1,7 @@
 package tcp2;
 
+import java.util.Arrays;
+
 public class ServicioServidor {
 
     public static boolean esNumeroPerfecto(int numero) {
@@ -16,4 +18,5 @@ public class ServicioServidor {
 
         return sumaDivisores == numero;
     }
+
 }
