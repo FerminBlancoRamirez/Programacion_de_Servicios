@@ -1,6 +1,8 @@
 package tcp3;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ServicioServidor2 {
     private static int[] arrayServidor = new int[6];
@@ -8,9 +10,22 @@ public class ServicioServidor2 {
     private static int reintegroServidor;
 
     public static void rellenarArrayServidor() {
+        boolean esValido = true;
+        int[] arraySinRepeticiones = new int[6];
+        do {
+            for (int i = 0; i < arrayServidor.length; i++) {
+                arraySinRepeticiones[i] = (int) (Math.random() * 49) + 1;
+            }
+            if (ServicioServidor2.hayRepetidos(arraySinRepeticiones)) {
+                System.out.println("Error has introducido numeros repetidos. Debes volver a ingresar el boleto completo");
+                esValido = false;
+            }
+        } while (!esValido);
         for (int i = 0; i < arrayServidor.length; i++) {
-            arrayServidor[i] = (int) (Math.random() * 49) + 1;
+            arrayServidor[i] = arraySinRepeticiones[i];
         }
+        Arrays.sort(arrayServidor);
+
         complementarioServidor = (int) (Math.random() * 49) + 1;
         reintegroServidor = (int) (Math.random() * 10);
     }
@@ -36,18 +51,19 @@ public class ServicioServidor2 {
         }
     }
 
-    public static boolean coincidenciaComplementario(int complementarioCliente) {
-        if (complementarioServidor == complementarioCliente) {
-            return true;
-        } else {
-            return false;
+    public static boolean coincidenciaComplementario(int[] arrayCliente) {
+        for (int i = 0; i < arrayCliente.length; i++) {
+            if (arrayCliente[i] == complementarioServidor) {
+                return true;
+            }
         }
+        return false;
     }
 
-    public static String devolucionAlCliente(int[] arrayCliente, int complementarioCliente, int reintegroCliente) {
+    public static String devolucionAlCliente(int[] arrayCliente, int reintegroCliente) {
         int numCoincidencias = coincidencias(arrayCliente);
         boolean esReintegro = coincidenReintegro(reintegroCliente);
-        boolean esComplementario = coincidenciaComplementario(complementarioCliente);
+        boolean esComplementario = coincidenciaComplementario(arrayCliente);
 
         if (numCoincidencias == 6 && esReintegro) {
             String categoriaEspecial = "Has acertado los 6 numeros mas el reintegro eres el ganador de la categoria especial";
@@ -80,6 +96,16 @@ public class ServicioServidor2 {
         System.out.println("Array servidor: " + Arrays.toString(arrayServidor));
         System.out.println("Complementario servidor: " + complementarioServidor);
         System.out.println("Reintegro servidor: " + reintegroServidor);
+    }
+
+    public static boolean hayRepetidos(int[] arrayServidor) {
+        Set<Integer> vistos = new HashSet<>();
+        for (int i : arrayServidor) {
+            if (!vistos.add(i)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

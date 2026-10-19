@@ -34,10 +34,7 @@ public class Servidor {
 
                 int numeroReintegro = flujoEntrada.readInt();
                 System.out.println("El numero de reintegro del cliente es: " + numeroReintegro);
-
-                int numeroComplementario = flujoEntrada.readInt();
-                System.out.println("El numero complementario del cliente es: " + numeroComplementario);
-                String resultado = ServicioServidor2.devolucionAlCliente(numeros, numeroComplementario,
+                String resultado = ServicioServidor2.devolucionAlCliente(numeros,
                         numeroReintegro);
                 flujoSalida.writeUTF(resultado);
                 flujoSalida.flush();

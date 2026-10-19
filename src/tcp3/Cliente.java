@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Cliente {
@@ -21,29 +22,29 @@ public class Cliente {
 
             while (true) {
                 int[] numerosCliente = new int[6];
-                System.out.println("Introduce los numeros de tu primitiva entre 1-49");
-                for (int i = 0; i < numerosCliente.length; i++) {
-                    numerosCliente[i] = ServicioCliente2.pedirEnteroPositivo(sc);
-                }
+                do {
+                    System.out.println("Introduce los numeros de tu primitiva entre 1-49");
+                    for (int i = 0; i < numerosCliente.length; i++) {
+                        numerosCliente[i] = ServicioCliente2.pedirEnteroPositivo(sc);
+                    }
+                } while (ServicioCliente2.tieneDuplicados(numerosCliente) == true);
                 flujoSalida.writeInt(numerosCliente.length);
+                Arrays.sort(numerosCliente);
                 for (int num : numerosCliente) {
+
                     flujoSalida.writeInt(num);
                 }
-
-                System.out.println("Por favor introduzca su numero reintegro entre 0-9:");
-                int reintegro = ServicioCliente2.pedirReintegro(sc);
+                System.out.println("Número de reintegro generado");
+                int reintegro = ServicioCliente2.generarReintegro();
+                System.out.println(reintegro);
                 flujoSalida.writeInt(reintegro);
-
-                System.out.println("Por favor introduzca su numero complementario entre 1-49: ");
-                int complementario = ServicioCliente2.pedirEnteroPositivo(sc);
-                flujoSalida.writeInt(complementario);
 
                 String respuesta = flujoEntrada.readUTF();
                 System.out.println("Recibiendo un mensaje del servidor: " + respuesta);
-                
+
                 System.out.println("Si desea salir introduzca 0: ");
-                int decision =ServicioCliente2.pedirEnteroPositivo(sc);
-                if (decision==0) {
+                int decision = ServicioCliente2.pedirEnteroPositivo(sc);
+                if (decision == 0) {
                     System.out.println("Cerrando comunicacion");
                     break;
                 }

@@ -1,6 +1,8 @@
 package tcp3;
 
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ServicioCliente2 {
     public static int pedirEnteroPositivo(Scanner sc) {
@@ -18,18 +20,23 @@ public class ServicioCliente2 {
         return numero;
     }
 
-    public static int pedirReintegro(Scanner sc) {
-        int numero;
-        do {
-            while (!sc.hasNextInt()) {
-                System.out.println("Error: Debes introducir un número entero válido.");
-                sc.next();
+    public static boolean tieneDuplicados(int[] numeros) {
+        Set<Integer> set = new HashSet<>();
+
+        for (int numero : numeros) {
+            if (!set.add(numero)) {
+                System.out.println("ERROR: no puede haber números duplicados");
+                return true;
+
             }
-            numero = sc.nextInt();
-            if (numero < 0 || numero > 9) {
-                System.out.println("Error: El número debe estar comprendido entre 0 y 9. Inténtalo de nuevo.");
-            }
-        } while (numero < 0 || numero > 9);
+        }
+
+        return false;
+    }
+
+    public static int generarReintegro() {
+        int numero = (int) (Math.random() * 10);
+
         return numero;
     }
 
