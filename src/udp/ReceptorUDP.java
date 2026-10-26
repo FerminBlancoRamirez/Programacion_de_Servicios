@@ -25,9 +25,13 @@ public class ReceptorUDP {
 
             // 3. Imprimir los datos recibidos
             System.out.println("Mensaje recibido: " + paquete);
+            System.out.println("Puerto local de recepcion del mensaje: " + socket.getLocalPort());
+            System.out.println("Numero de bytes recibidos: "+bytesRec);
             System.out.println("Puerto origen del mensaje: " + recibo.getPort());
             System.out.println("IP de origen             : " + recibo.getAddress().getHostAddress());
 
+            //cerrar el socket
+            socket.close();
         } catch (IOException e) {
             System.err.println("Error al recibir el paquete UDP: " + e.getMessage());
             e.printStackTrace();
