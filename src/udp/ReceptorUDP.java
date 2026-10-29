@@ -29,7 +29,7 @@ public class ReceptorUDP {
             System.out.println("Numero de bytes recibidos: "+bytesRec);
             System.out.println("Puerto origen del mensaje: " + recibo.getPort());
             System.out.println("IP de origen             : " + recibo.getAddress().getHostAddress());
-
+            
             //cerrar el socket
             socket.close();
         } catch (IOException e) {
